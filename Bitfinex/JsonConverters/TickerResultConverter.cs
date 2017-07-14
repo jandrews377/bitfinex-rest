@@ -4,7 +4,7 @@ using Bitfinex.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Bitfinex
+namespace Bitfinex.JsonConverters
 {
     public class TickersResultConverter : JsonConverter
     {
@@ -33,10 +33,7 @@ namespace Bitfinex
             throw new NotImplementedException();
         }
 
-        public override bool CanWrite
-        {
-            get { return false; }
-        }
+        public override bool CanWrite => false;
     }
 
     public class TickerResultConverter : JsonConverter
@@ -59,10 +56,7 @@ namespace Bitfinex
             return null;
         }
 
-        public override bool CanWrite
-        {
-            get { return false; }
-        }
+        public override bool CanWrite => false;
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

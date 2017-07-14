@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Bitfinex.JsonConverters;
 using Bitfinex.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -28,7 +28,7 @@ namespace Bitfinex.Tests.Models
 
             var books = JsonConvert.DeserializeObject<List<IBook>>(json, new BooksResultConverter());
 
-            Assert.AreEqual(10, books.Count());
+            Assert.AreEqual(10, books.Count);
 
             var book = books[0];
 
@@ -52,11 +52,11 @@ namespace Bitfinex.Tests.Models
             try
             {
                 var client = new BitfinexRestClient();
-                var books = client.GetBooks("fUSD", Precision.P0, 5);
+                client.GetBooks("fUSD", Precision.P0, 5);
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.InnerException.Message, "(10020) symbol: invalid");
+                if (ex.InnerException != null) Assert.AreEqual(ex.InnerException.Message, "(10020) symbol: invalid");
             }
         }
 
@@ -65,14 +65,15 @@ namespace Bitfinex.Tests.Models
         {
             try
             {
-                var client = new BitfinexRestClient();
-                client.BaseUrl = "https://api.bitfinexf.com/v2";
+                var client = new BitfinexRestClient { BaseUrl = "https://api.bitfinexf.com/v2" };
 
-                var books = client.GetBooks("fUSD", Precision.P0, 5);
+                client.GetBooks("fUSD", Precision.P0, 5);
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.InnerException.Message, "The remote name could not be resolved: 'api.bitfinexf.com'");
+                if (ex.InnerException != null)
+                    Assert.AreEqual(ex.InnerException.Message,
+                        "The remote name could not be resolved: 'api.bitfinexf.com'");
             }
         }
     }

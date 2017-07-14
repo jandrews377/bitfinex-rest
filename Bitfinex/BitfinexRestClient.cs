@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Bitfinex.JsonConverters;
 using Bitfinex.Models;
 using Newtonsoft.Json;
 using RestSharp;
@@ -19,7 +18,7 @@ namespace Bitfinex
 
         public string BaseUrl
         {
-            get { return _baseUrl; }
+            get => _baseUrl;
             set
             {
                 _baseUrl = value;
@@ -78,9 +77,9 @@ namespace Bitfinex
             string url = $"tickers?symbols={symbolsString}";
             var request = new RestRequest(url, Method.GET);
 
-            var response = await _client.ExecuteTaskAsync(request, CancellationToken);
+            var response = await GetResponseAsync(request, CancellationToken);
 
-            return JsonConvert.DeserializeObject<List<ITicker>>(response.Content, new TickersResultConverter());
+            return (List<ITicker>)DeserializeObject<List<ITicker>>(response.Content, new TickersResultConverter());
         }
 
         /// <summary>
@@ -117,9 +116,9 @@ namespace Bitfinex
             string url = $"trades/{symbol}/hist?" + Join("&", parameters.ToArray());
             var request = new RestRequest(url, Method.GET);
 
-            var response = await _client.ExecuteTaskAsync(request, CancellationToken);
+            var response = await GetResponseAsync(request, CancellationToken);
 
-            return JsonConvert.DeserializeObject<List<ITrade>>(response.Content, new TradesResultConverter());
+            return (List<ITrade>)DeserializeObject<List<ITrade>>(response.Content, new TradesResultConverter());
         }
 
 
@@ -151,13 +150,11 @@ namespace Bitfinex
 
             var response = await GetResponseAsync(request, CancellationToken);
 
-            var books = (List<IBook>) this.DeserializeObject<List<IBook>>(response.Content, new BooksResultConverter());
-
-            return books;
+            return (List<IBook>) DeserializeObject<List<IBook>>(response.Content, new BooksResultConverter());
         }
 
-
-        private object DeserializeObject<T>(string json, JsonConverter converter)
+        #region private
+        private static object DeserializeObject<T>(string json, JsonConverter converter)
         {
             try
             {
@@ -171,15 +168,14 @@ namespace Bitfinex
 
         private async Task<IRestResponse> GetResponseAsync(IRestRequest request, CancellationToken token)
         {
-            var response = await _client.ExecuteTaskAsync(request, CancellationToken);
+            var response = await _client.ExecuteTaskAsync(request, token);
             if (!IsNullOrEmpty(response.ErrorMessage)) throw new Exception(response.ErrorMessage);
 
             Common.BitfinexException exception = null;
             try
             {
                 exception =
-                    JsonConvert.DeserializeObject<Common.BitfinexException>(response.Content,
-                        new Common.ExceptionResultConverter());
+                    JsonConvert.DeserializeObject<Common.BitfinexException>(response.Content, new Common.ExceptionResultConverter());
             }
             catch(Exception) { }
 
@@ -187,5 +183,6 @@ namespace Bitfinex
 
             return response;
         }
+        #endregion
     }
 }

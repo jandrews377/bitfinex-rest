@@ -34,7 +34,7 @@ namespace Bitfinex.Models
         /// <summary>
         /// Amount of time the funding transaction was for
         /// </summary>
-        int Period { get; set; }
+        TimeSpan Period { get; set; }
     }
 
     public class Trade
@@ -63,7 +63,7 @@ namespace Bitfinex.Models
         public double Rate { get; set; }
 
         [Obsolete]
-        public int Period { get; set; }
+        public TimeSpan Period { get; set; }
     }
 
     public class FundingTrade : Trade, ITrade
@@ -76,7 +76,7 @@ namespace Bitfinex.Models
         /// <summary>
         /// Amount of time the funding transaction was for
         /// </summary>
-        public int Period { get; set; }
+        public TimeSpan Period { get; set; }
 
         [Obsolete]
         public double Price { get; set; }

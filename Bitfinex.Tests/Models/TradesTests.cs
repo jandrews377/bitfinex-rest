@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using Bitfinex.JsonConverters;
 using Bitfinex.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -17,7 +17,7 @@ namespace Bitfinex.Tests.Models
 
             var trades = JsonConvert.DeserializeObject<List<ITrade>>(json, new TradesResultConverter());
 
-            Assert.AreEqual(120, trades.Count());
+            Assert.AreEqual(120, trades.Count);
 
             var trade = trades[0];
 
@@ -25,7 +25,7 @@ namespace Bitfinex.Tests.Models
             Assert.AreEqual(1499993669662, trade.MTS);
             Assert.AreEqual(-42.48113687, trade.Amount);
             Assert.AreEqual(0.00026573, trade.Rate);
-            Assert.AreEqual(2, trade.Period);
+            Assert.AreEqual(2, trade.Period.Milliseconds);
         }
 
         [TestMethod]
@@ -36,7 +36,7 @@ namespace Bitfinex.Tests.Models
 
             var trades = JsonConvert.DeserializeObject<List<ITrade>>(json, new TradesResultConverter());
 
-            Assert.AreEqual(120, trades.Count());
+            Assert.AreEqual(120, trades.Count);
 
             var trade = trades[0];
 
@@ -52,7 +52,7 @@ namespace Bitfinex.Tests.Models
             var client = new BitfinexRestClient();
             var trades = client.GetTrades("tBTCUSD", 50, 0, 0, SortDirection.NewOld);
 
-            Assert.AreEqual(50, trades.Count());
+            Assert.AreEqual(50, trades.Count);
         }
     }
 }

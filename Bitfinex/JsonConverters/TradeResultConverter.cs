@@ -4,7 +4,7 @@ using Bitfinex.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Bitfinex
+namespace Bitfinex.JsonConverters
 {
     public class TradesResultConverter : JsonConverter
     {
@@ -33,10 +33,7 @@ namespace Bitfinex
             throw new NotImplementedException();
         }
 
-        public override bool CanWrite
-        {
-            get { return false; }
-        }
+        public override bool CanWrite => false;
     }
 
     public class TradeResultConverter : JsonConverter
@@ -57,10 +54,7 @@ namespace Bitfinex
             return null;
         }
 
-        public override bool CanWrite
-        {
-            get { return false; }
-        }
+        public override bool CanWrite => false;
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -80,6 +74,7 @@ namespace Bitfinex
 
         private FundingTrade JArrayToFundingTrade(JArray array)
         {
+            // TO-DO: Confirm that the value for 'Period' that is returned is actually milliseconds.
 
             return new FundingTrade
             {
@@ -87,7 +82,7 @@ namespace Bitfinex
                 MTS = (decimal)array[1],
                 Amount = (double)array[2],
                 Rate = (double)array[3],
-                Period = (int)array[4]
+                Period = new TimeSpan(0,0,0,0,(int)array[4])
             };
         }
     }
