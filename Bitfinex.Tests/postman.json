@@ -1,0 +1,43 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Bitfinex",
+		"_postman_id": "6bfee292-bc0e-38ab-e875-843d23de444f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://api.bitfinex.com/v2/tickers?symbols=tBTCUSD,fUSD",
+			"request": {
+				"url": {
+					"raw": "https://api.bitfinex.com/v2/tickers?symbols=tBTCUSD,fUSD",
+					"protocol": "https",
+					"host": [
+						"api",
+						"bitfinex",
+						"com"
+					],
+					"path": [
+						"v2",
+						"tickers"
+					],
+					"query": [
+						{
+							"key": "symbols",
+							"value": "tBTCUSD,fUSD",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
