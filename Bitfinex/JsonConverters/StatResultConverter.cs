@@ -6,23 +6,23 @@ using Newtonsoft.Json.Linq;
 
 namespace Bitfinex.JsonConverters
 {
-    public class BooksResultConverter : JsonConverter
+    public class StatsResultConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(List<IBook>);
+            return objectType == typeof(List<Stat>);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var array = JArray.Load(reader);
 
-            var results = new List<IBook>();
+            var results = new List<Stat>();
 
             foreach (var item in array)
             {
-                var Book = JsonConvert.DeserializeObject<IBook>(item.ToString(), new BookResultConverter());
-                results.Add(Book);
+                var stat = JsonConvert.DeserializeObject<Stat>(item.ToString(), new StatResultConverter());
+                results.Add(stat);
             }
 
             return results;
@@ -36,11 +36,11 @@ namespace Bitfinex.JsonConverters
         public override bool CanWrite => false;
     }
 
-    public class BookResultConverter : JsonConverter
+    public class StatResultConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(IBook);
+            return objectType == typeof(Stat);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
@@ -48,15 +48,11 @@ namespace Bitfinex.JsonConverters
         {
             var array = JArray.Load(reader);
 
-            switch (array.Count)
+            return new Stat
             {
-                case 3:
-                    return JArrayToTradingBook(array);
-                case 4:
-                    return JArrayToFundingBook(array);
-            }
-
-            return null;
+                MTS = (decimal)array[0],
+                Value = (double)array[1]
+            };
         }
 
         public override bool CanWrite => false;
@@ -64,27 +60,6 @@ namespace Bitfinex.JsonConverters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             throw new NotImplementedException();
-        }
-
-        private TradingBook JArrayToTradingBook(JArray array)
-        {
-            return new TradingBook
-            {
-                Price = (double)array[0],
-                Count = (int)array[1],
-                Amount = (double)array[2]
-            };           
-        }
-
-        private FundingBook JArrayToFundingBook(JArray array)
-        {
-            return new FundingBook
-            {
-                Rate = (double)array[0],
-                Period = (int)array[1],
-                Count = (int)array[2],
-                Amount = (double)array[3]
-            };
         }
     }
 }

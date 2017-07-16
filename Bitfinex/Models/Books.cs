@@ -37,7 +37,6 @@ namespace Bitfinex.Models
 
     public class Book
     {
-
         /// <summary>
         /// Number of orders at that price level
         /// </summary>

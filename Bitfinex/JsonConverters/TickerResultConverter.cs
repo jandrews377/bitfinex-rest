@@ -15,7 +15,7 @@ namespace Bitfinex.JsonConverters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            JArray array = JArray.Load(reader);
+            var array = JArray.Load(reader);
 
             var results = new List<ITicker>();
 
@@ -46,9 +46,9 @@ namespace Bitfinex.JsonConverters
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
-            JArray array = JArray.Load(reader);
+            var array = JArray.Load(reader);
 
-            string symbol = (string) array[0];
+            var symbol = (string) array[0];
 
             if (symbol.StartsWith("t")) return JArrayToTradingTicker(array);
             if (symbol.StartsWith("f")) return JArrayToFundingTicker(array);

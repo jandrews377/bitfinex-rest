@@ -2,17 +2,12 @@
 
 namespace Bitfinex.Models
 {
-    public enum SortDirection
-    {
-        OldNew = 1,  NewOld = -1
-    }
-
     public interface ITrade
     {
         decimal ID { get; set; }
 
         /// <summary>
-        /// Millisecond time stamp
+        /// Millisecond timestamp
         /// </summary>
         decimal MTS { get; set; }
 
@@ -42,7 +37,7 @@ namespace Bitfinex.Models
         public decimal ID { get; set; }
 
         /// <summary>
-        /// Millisecond time stamp
+        /// Millisecond timestamp
         /// </summary>
         public decimal MTS { get; set; }
 

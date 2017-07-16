@@ -15,7 +15,7 @@ namespace Bitfinex.JsonConverters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            JArray array = JArray.Load(reader);
+            var array = JArray.Load(reader);
 
             var results = new List<ITrade>();
 
@@ -46,10 +46,15 @@ namespace Bitfinex.JsonConverters
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
             JsonSerializer serializer)
         {
-            JArray array = JArray.Load(reader);
+            var array = JArray.Load(reader);
 
-            if (array.Count == 4) return JArrayToTradingTrade(array);
-            if (array.Count == 5) return JArrayToFundingTrade(array);
+            switch (array.Count)
+            {
+                case 4:
+                    return JArrayToTradingTrade(array);
+                case 5:
+                    return JArrayToFundingTrade(array);
+            }
 
             return null;
         }

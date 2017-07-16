@@ -52,6 +52,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CandlesTests.cs" />
+    <Compile Include="Models\StatsTests.cs" />
     <Compile Include="Models\TickersTests.cs" />
     <Compile Include="Models\BooksTests.cs" />
     <Compile Include="Models\TradesTests.cs" />

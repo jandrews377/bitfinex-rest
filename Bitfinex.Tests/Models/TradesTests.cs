@@ -50,7 +50,7 @@ namespace Bitfinex.Tests.Models
         public void TradesClientTest()
         {
             var client = new BitfinexRestClient();
-            var trades = client.GetTrades("tBTCUSD", 50, 0, 0, SortDirection.NewOld);
+            var trades = client.GetTrades("tBTCUSD", 50, 0, 0, SortDirection.NewestToOldest);
 
             Assert.AreEqual(50, trades.Count);
         }

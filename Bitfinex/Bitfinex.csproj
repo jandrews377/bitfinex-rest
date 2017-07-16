@@ -49,8 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitfinexRestClient.cs" />
+    <Compile Include="JsonConverters\CandleResultConverter.cs" />
+    <Compile Include="JsonConverters\StatResultConverter.cs" />
     <Compile Include="Models\Books.cs" />
+    <Compile Include="Models\Candles.cs" />
     <Compile Include="Models\Common.cs" />
+    <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\Tickers.cs" />
     <Compile Include="Models\Trades.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
