@@ -110,11 +110,9 @@ namespace Bitfinex.Models
             return objectType == typeof(BitfinexException);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-            JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-
-            JArray array = JArray.Load(reader);
+            var array = JArray.Load(reader);
 
             if ((string)array[0] == "error")
             {

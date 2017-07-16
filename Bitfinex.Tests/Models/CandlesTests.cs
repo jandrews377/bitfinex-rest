@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Bitfinex.JsonConverters;
 using Bitfinex.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BitfinexRestClient.cs" />
+    <Compile Include="CandlesClient.cs" />
+    <Compile Include="IBitfinexRestClient.cs" />
+    <Compile Include="StatsClient.cs" />
     <Compile Include="JsonConverters\CandleResultConverter.cs" />
     <Compile Include="JsonConverters\StatResultConverter.cs" />
     <Compile Include="Models\Books.cs" />
@@ -61,6 +64,9 @@
     <Compile Include="JsonConverters\BookResultConverter.cs" />
     <Compile Include="JsonConverters\TradeResultConverter.cs" />
     <Compile Include="JsonConverters\TickerResultConverter.cs" />
+    <Compile Include="BooksClient.cs" />
+    <Compile Include="TickersClient.cs" />
+    <Compile Include="TradesClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
