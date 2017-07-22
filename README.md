@@ -1,4 +1,4 @@
-# Bitfinex REST API Version 2.0 Client [![Build status](https://jandrews377.visualstudio.com/_apis/public/build/definitions/bc4a1ea7-aece-4253-8177-8346d98a9c22/1/badge)
+# Bitfinex REST API Version 2.0 Client ![Build status](https://jandrews377.visualstudio.com/_apis/public/build/definitions/bc4a1ea7-aece-4253-8177-8346d98a9c22/1/badge)
 
 This is a C# implementation of the Bitfinex REST API Version 2.0 (BETA) found here:
 
