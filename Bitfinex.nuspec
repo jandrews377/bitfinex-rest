@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Bitfinex</id>
-    <version>1.0.0</version>
+    <version>$version$</version>
     <authors>Jeremy Andrews</authors>
     <owners>Jeremy Andrews</owners>
     <licenseUrl>https://github.com/jandrews377/bitfinex-rest/blob/master/LICENSE.txt</licenseUrl>
