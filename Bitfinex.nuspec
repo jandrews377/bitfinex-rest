@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Bitfinex</id>
+    <version>1.0.0</version>
+    <authors>Jeremy Andrews</authors>
+    <owners>Jeremy Andrews</owners>
+    <licenseUrl>https://github.com/jandrews377/bitfinex-rest/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/jandrews377/bitfinex-rest</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A C# implementation of the Bitfinex REST API Version 2.0</description>
+    <releaseNotes>For full release notes see https://github.com/jandrews377/bitfinex-rest/blob/master/releasenotes.markdown</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>BITFINEX</tags>
+  </metadata>
+</package>
