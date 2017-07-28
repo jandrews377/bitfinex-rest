@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Bitfinex.JsonConverters;
 using Bitfinex.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -54,5 +55,15 @@ namespace Bitfinex.Tests.Models
 
             Assert.AreEqual(50, trades.Count);
         }
+
+        [TestMethod]
+        public void TradesClientTest2()
+        {
+            var client = new BitfinexRestClient();
+            var trades = client.GetTrades("tBTCUSD", 120, 1501105149000, 1501115149000, SortDirection.NewestToOldest);
+
+            Assert.AreEqual(120, trades.Count);
+        }
+
     }
 }

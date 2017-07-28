@@ -97,7 +97,7 @@ namespace Bitfinex.Models
         }
     }
 
-    public class BitfinexException
+    public class BitfinexException : Exception
     {
         public int ErrorCode { get; set; }
         public string Message { get; set; }
