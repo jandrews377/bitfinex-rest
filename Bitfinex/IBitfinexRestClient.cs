@@ -35,7 +35,7 @@ namespace Bitfinex
         /// <param name="limit">Number of candles requested</param>
         /// <param name="start">Filter start (ms)</param>
         /// <returns>A list of candle information</returns>
-        List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start);
+        List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start);
 
         /// <summary>
         /// Get charting candle info
@@ -47,7 +47,7 @@ namespace Bitfinex
         /// <param name="start">Filter start (ms)</param>
         /// <param name="end">Filter end (ms)</param>
         /// <returns>A list of candle information</returns>
-        List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start, int end);
+        List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start, long end);
 
         /// <summary>
         /// Get charting candle info
@@ -60,7 +60,7 @@ namespace Bitfinex
         /// <param name="end">Filter end (ms)</param>
         /// <param name="sortDirection">Default new > old</param>
         /// <returns>A list of candle information</returns>
-        List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start, int end, SortDirection sortDirection);
+        List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start, long end, SortDirection sortDirection);
 
         /// <summary>
         /// Get charting candle info
@@ -90,7 +90,7 @@ namespace Bitfinex
         /// <param name="limit">Number of candles requested</param>
         /// <param name="start">Filter start (ms)</param>
         /// <returns>A list of candle information</returns>
-        Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start);
+        Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start);
 
         /// <summary>
         /// Get charting candle info
@@ -102,7 +102,7 @@ namespace Bitfinex
         /// <param name="start">Filter start (ms)</param>
         /// <param name="end">Filter end (ms)</param>
         /// <returns>A list of candle information</returns>
-        Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start, int end);
+        Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start, long end);
 
         /// <summary>
         /// Get charting candle info
@@ -115,7 +115,7 @@ namespace Bitfinex
         /// <param name="end">Filter end (ms)</param>
         /// <param name="sortDirection">Default new > old</param>
         /// <returns>A list of candle information</returns>
-        Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start, int end, SortDirection sortDirection);
+        Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start, long end, SortDirection sortDirection);
 
         /// <summary>
         /// Get pertinent details of trades, such as price, size and time.
@@ -139,7 +139,7 @@ namespace Bitfinex
         /// <param name="limit">Number of records</param>
         /// <param name="start">Millisecond start time</param>
         /// <returns>List of trades</returns>
-        List<ITrade> GetTrades(string symbol, int limit, int start);
+        List<ITrade> GetTrades(string symbol, int limit, long start);
 
         /// <summary>
         /// Get pertinent details of trades, such as price, size and time.
@@ -149,7 +149,7 @@ namespace Bitfinex
         /// <param name="start">Millisecond start time</param>
         /// <param name="end">Millisecond end time</param>
         /// <returns>List of trades</returns>
-        List<ITrade> GetTrades(string symbol, int limit, int start, int end);
+        List<ITrade> GetTrades(string symbol, int limit, long start, long end);
 
         /// <summary>
         /// Get pertinent details of trades, such as price, size and time.
@@ -160,7 +160,7 @@ namespace Bitfinex
         /// <param name="end">Millisecond end time</param>
         /// <param name="sortDirection"></param>
         /// <returns>List of trades</returns>
-        List<ITrade> GetTrades(string symbol, int limit, int start, int end, SortDirection sortDirection);
+        List<ITrade> GetTrades(string symbol, int limit, long start, long end, SortDirection sortDirection);
 
         /// <summary>
         /// Get pertinent details of trades, such as price, size and time.
@@ -184,7 +184,7 @@ namespace Bitfinex
         /// <param name="limit">Number of records (default 120)</param>
         /// <param name="start">Millisecond start time (default 0)</param>
         /// <returns>List of trades</returns>
-        Task<List<ITrade>> GetTradesAsync(string symbol, int limit, int start);
+        Task<List<ITrade>> GetTradesAsync(string symbol, int limit, long start);
 
         /// <summary>
         /// Get pertinent details of trades, such as price, size and time.
@@ -194,7 +194,7 @@ namespace Bitfinex
         /// <param name="start">Millisecond start time (default 0)</param>
         /// <param name="end">Millisecond end time (default 0)</param>
         /// <returns>List of trades</returns>
-        Task<List<ITrade>> GetTradesAsync(string symbol, int limit, int start, int end);
+        Task<List<ITrade>> GetTradesAsync(string symbol, int limit, long start, long end);
 
         /// <summary>
         /// Get pertinent details of trades, such as price, size and time.
@@ -205,7 +205,7 @@ namespace Bitfinex
         /// <param name="end">Millisecond end time (default 0)</param>
         /// <param name="sortDirection">Default new > old</param>
         /// <returns>List of trades</returns>
-        Task<List<ITrade>> GetTradesAsync(string symbol, int limit, int start, int end, SortDirection sortDirection);
+        Task<List<ITrade>> GetTradesAsync(string symbol, int limit, long start, long end, SortDirection sortDirection);
 
         string BaseUrl { get; set; }
         CancellationToken CancellationToken { get; set; }

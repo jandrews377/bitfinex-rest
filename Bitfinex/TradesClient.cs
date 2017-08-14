@@ -4,6 +4,7 @@ using Bitfinex.JsonConverters;
 using Bitfinex.Models;
 using RestSharp;
 using static System.String;
+using System;
 
 namespace Bitfinex
 {
@@ -39,7 +40,7 @@ namespace Bitfinex
         /// <param name="limit">Number of records</param>
         /// <param name="start">Millisecond start time</param>
         /// <returns>List of trades</returns>
-        public List<ITrade> GetTrades(string symbol, int limit, int start)
+        public List<ITrade> GetTrades(string symbol, int limit, long start)
         {
             return getTradesAsync(symbol, limit, start).Result;
         }
@@ -52,7 +53,7 @@ namespace Bitfinex
         /// <param name="start">Millisecond start time</param>
         /// <param name="end">Millisecond end time</param>
         /// <returns>List of trades</returns>
-        public List<ITrade> GetTrades(string symbol, int limit, int start, int end)
+        public List<ITrade> GetTrades(string symbol, int limit, long start, long end)
         {
             return getTradesAsync(symbol, limit, start, end).Result;
         }
@@ -66,7 +67,7 @@ namespace Bitfinex
         /// <param name="end">Millisecond end time</param>
         /// <param name="sortDirection"></param>
         /// <returns>List of trades</returns>
-        public List<ITrade> GetTrades(string symbol, int limit, int start, int end, SortDirection sortDirection)
+        public List<ITrade> GetTrades(string symbol, int limit, long start, long end, SortDirection sortDirection)
         {
             return getTradesAsync(symbol, limit, start, end, sortDirection).Result;
         }
@@ -99,7 +100,7 @@ namespace Bitfinex
         /// <param name="limit">Number of records (default 120)</param>
         /// <param name="start">Millisecond start time (default 0)</param>
         /// <returns>List of trades</returns>
-        public async Task<List<ITrade>> GetTradesAsync(string symbol, int limit, int start)
+        public async Task<List<ITrade>> GetTradesAsync(string symbol, int limit, long start)
         {
             return await getTradesAsync(symbol, limit, start);
         }
@@ -112,7 +113,7 @@ namespace Bitfinex
         /// <param name="start">Millisecond start time (default 0)</param>
         /// <param name="end">Millisecond end time (default 0)</param>
         /// <returns>List of trades</returns>
-        public async Task<List<ITrade>> GetTradesAsync(string symbol, int limit, int start, int end)
+        public async Task<List<ITrade>> GetTradesAsync(string symbol, int limit, long start, long end)
         {
             return await getTradesAsync(symbol, limit, start, end);
         }
@@ -126,12 +127,12 @@ namespace Bitfinex
         /// <param name="end">Millisecond end time (default 0)</param>
         /// <param name="sortDirection">Default new > old</param>
         /// <returns>List of trades</returns>
-        public async Task<List<ITrade>> GetTradesAsync(string symbol, int limit, int start, int end, SortDirection sortDirection)
+        public async Task<List<ITrade>> GetTradesAsync(string symbol, int limit, long start, long end, SortDirection sortDirection)
         {
             return await getTradesAsync(symbol, limit, start, end, sortDirection);
         }
 
-        private async Task<List<ITrade>> getTradesAsync(string symbol, int? limit = null, int? start = null, int? end = null, SortDirection? sortDirection = null)
+        private async Task<List<ITrade>> getTradesAsync(string symbol, int? limit = null, long? start = null, long? end = null, SortDirection? sortDirection = null)
         {
             var parameters = new List<string>();
             if (limit.GetValueOrDefault() != 0) parameters.Add("limit=" + limit);

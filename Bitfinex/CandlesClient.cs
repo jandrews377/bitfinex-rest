@@ -46,7 +46,7 @@ namespace Bitfinex
         /// <param name="limit">Number of candles requested</param>
         /// <param name="start">Filter start (ms)</param>
         /// <returns>A list of candle information</returns>
-        public List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start)
+        public List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start)
         {
             return getCandlesAsync(timeframe, symbol, section, limit, start).Result;
         }
@@ -61,7 +61,7 @@ namespace Bitfinex
         /// <param name="start">Filter start (ms)</param>
         /// <param name="end">Filter end (ms)</param>
         /// <returns>A list of candle information</returns>
-        public List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start, int end)
+        public List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start, long end)
         {
             return getCandlesAsync(timeframe, symbol, section, limit, start, end).Result;
         }
@@ -77,7 +77,7 @@ namespace Bitfinex
         /// <param name="end">Filter end (ms)</param>
         /// <param name="sortDirection">Default new > old</param>
         /// <returns>A list of candle information</returns>
-        public List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start, int end, SortDirection sortDirection)
+        public List<Candle> GetCandles(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start, long end, SortDirection sortDirection)
         {
             // TO-DO: The spec says that the start and end are string. We are handling as ints.
 
@@ -118,7 +118,7 @@ namespace Bitfinex
         /// <param name="limit">Number of candles requested</param>
         /// <param name="start">Filter start (ms)</param>
         /// <returns>A list of candle information</returns>
-        public async Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start)
+        public async Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start)
         {
             return await getCandlesAsync(timeframe, symbol, section, limit, start);
         }
@@ -133,7 +133,7 @@ namespace Bitfinex
         /// <param name="start">Filter start (ms)</param>
         /// <param name="end">Filter end (ms)</param>
         /// <returns>A list of candle information</returns>
-        public async Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start, int end)
+        public async Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start, long end)
         {
             return await getCandlesAsync(timeframe, symbol, section, limit, start, end);
         }
@@ -149,12 +149,12 @@ namespace Bitfinex
         /// <param name="end">Filter end (ms)</param>
         /// <param name="sortDirection">Default new > old</param>
         /// <returns>A list of candle information</returns>
-        public async Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, int start, int end, SortDirection sortDirection)
+        public async Task<List<Candle>> GetCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int limit, long start, long end, SortDirection sortDirection)
         {
             return await getCandlesAsync(timeframe, symbol, section, limit, start, end, sortDirection);
         }
 
-        private async Task<List<Candle>> getCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int? limit = null, int? start = null, int? end = null, SortDirection? sortDirection = null)
+        private async Task<List<Candle>> getCandlesAsync(TimeFrame timeframe, Symbol symbol, Section section, int? limit = null, long? start = null, long? end = null, SortDirection? sortDirection = null)
         {
             var parameters = new List<string>();
             if (limit.GetValueOrDefault() != 0) parameters.Add("limit=" + limit);
